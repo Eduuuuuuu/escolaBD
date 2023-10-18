@@ -12,9 +12,9 @@ endereco varchar(25)
 );
 
 insert into alunos (id_aluno, nome_aluno, data_de_nascimento, email, telefone, endereco) values
-(1, 'Eduardo Vilas Boas', '06-04-2007', 'eduvilasboas@gmail.com', '11-98877-8844', 'av.Parque Queiroz Pacheco' ),
-(2, 'Vinicius Guimarães', '06-04-2007', 'viniguimaraes@gmail.com', '11-98799-8984', 'Alameda Rio Negro' ),
-(3, 'Cauã da Silva', '03-07-2007', 'cauasilva@gmail.com', '11-98576-8747', 'Rua Bonard' );
+(1, 'Eduardo Vilas Boas', '06-04-2007', 'eduvilasboas@gmail.com', '11-98877-8844', 'Av.Parque Queiroz Pacheco' ),
+(2, 'Vinicius Guimarães', '12-23-2007', 'viniguimaraes@gmail.com', '11-98799-8984', 'Alameda Rio Negro' ),
+(3, 'Cauã da Silva', '07-19-2007', 'cauasilva@gmail.com', '11-98576-8747', 'Rua Bonard' );
 
 
 create table professor (
@@ -26,7 +26,7 @@ data_de_contratacao varchar(15)
 insert into professor(id_professor, nome, data_de_contratacao)values
 (1, 'Bruno', '03-15-2022'),
 (2, 'Lucas', '04-17-2021'),
-(3, 'Fernando', '04-11-2015');
+(3, 'Fernando', '09-11-2015');
 
 create table turmas (
 id_turmas integer primary key,
@@ -41,9 +41,9 @@ foreign key (id_aluno) references alunos(id_aluno)
 );
 
 insert into turmas (id_turmas, turma_numero, ano_escolar) values
-(1, 1, '2° A'),
+(1, 1, '1° C'),
 (2, 2, '2° B'),
-(3, , '2° A');
+(3, 3, '3° A');
 
 create table notas (
 id_notas integer primary key,
@@ -53,6 +53,13 @@ id_materia integer,
 foreign key (id_aluno) references alunos(id_aluno),
 foreign key (id_materia) references materia(id_materia)
 );
+
+insert into notas (id_notas, media_aluno) values
+(1, 7.0),
+(2, 8.5),
+(3, 10);
+
+select notas;
 
 create table frequencia (
 id_frequencia integer primary key,
