@@ -171,11 +171,32 @@ insert into parcerias (id_parcerias, empresas, estagios_projetos) value
 
 select * from parcerias;
 
+create table historico (
+id_historico integer primary key,
+faltas varchar(100),
+desempenho_escolar varchar(150),
+id_aluno integer,
+foreign key (id_aluno) references alunos(id_aluno)
+);
+
+insert into historico (id_historico, faltas, desempenho_escolar, id_aluno) value
+(1, '30', 'Nenhuma ocorrência comunicada, recebeu 1 advertência, nenhuma suspensão', 1),
+(2, '107', '2 ocorrências comunicadas, nenhuma advertência, suspenso 1 vez', 2),
+(3, '82', 'Nenhuma ocorrência comunicada, recebeu 2 advertências, suspenso 3 vezes', 3);
+
+select * from historico;
+
 -- Esse select serve para ver o desempenho dos alunos como a media final, de qual materia é a nota e o nome do aluno. 
 select alunos.nome_aluno, notas.media_aluno, materia.id_materia from alunos join notas on alunos.id_aluno = notas.id_aluno join materia on notas.id_materia = materia.id_materia;
 
 -- Esse select serve para ver a frequencia do aluno bem como o nome dele.
 select frequencia.frequencia_aluno, alunos.nome_aluno from frequencia join alunos on frequencia.id_aluno = alunos.id_aluno;
 
--- Esse select serve para 
-select id_evento, eventos, id_cursos from eventos;
+-- Esse select serve para ver os eventos como o id do evento, qual é o evento e de qual curso ele é.
+select id_evento, eventos, cursos.nome_curso from eventos join cursos on eventos.id_cursos = cursos.id_cursos;
+
+-- Esse select serve para ver a maticula dos alunos como a data, o rm do aluno e o nome do aluno.
+select matricula.id_matricula, matricula.data_de_matricula, matricula.matricula_aluno, alunos.nome_aluno from matricula join alunos on matricula.id_aluno = alunos.id_aluno;
+
+-- Esse select serve para ver o historico escolar dos alunos como as faltas deles, o desempenho escolar ou seja se o aluno rebeu uma advertência ou já foi suspenso e o nome dos alunos.
+select historico.id_historico, alunos.nome_aluno, historico.desempenho_escolar, historico.faltas from historico join alunos on historico.id_aluno = alunos.id_aluno;
